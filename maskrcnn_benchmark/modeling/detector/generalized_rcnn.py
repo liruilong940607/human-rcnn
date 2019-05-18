@@ -60,6 +60,10 @@ class GeneralizedRCNN(nn.Module):
             losses = {}
             losses.update(detector_losses)
             losses.update(proposal_losses)
+            
+            # Fix: if the model has some unused parameters, multi-gpu backwards fail.
+            loss_zero_grad = 0 * sum([x.sum() for x in self.parameters()])
+            losses.update({"loss_zero_grad": loss_zero_grad})
             return losses
 
         return result
