@@ -1,3 +1,11 @@
+# Human R-CNN
+
+### Fast start
+
+```
+CUDA_VISIBLE_DEVICES=1,2,3,4 python -m torch.distributed.launch --master_port=1235 --nproc_per_node=4 tools/train_net.py --config-file e2e_mask_rcnn_R_50_FPN_1x.yaml
+```
+
 # Faster R-CNN and Mask R-CNN in PyTorch 1.0
 
 This project aims at providing the necessary building blocks for easily
